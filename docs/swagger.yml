@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  title: Quản lý Sách API
+  description: API để quản lý thông tin sách
+  version: 1.0.0
+components:
+  schemas:
+    Accounts:
+      $ref: 'components/accounts.yml#/components/schemas/Accounts'
+paths:
+  /public/api/v1/accounts:
+    get:
+      tags:
+        - Accounts
+      summary: Lấy danh sách sách
+      responses:
+        '200':
+          description: Trả về danh sách thành công
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Accounts'
+                example:
+                  - id: 1
+                    email: "truongtoan241@gmail.com"
+                    username: "Thanh Toàn"
+                    password: "123456"
+                    fullname: "Truong Thanh Toan"
+                    phone: "0383710766"
+                    gender: true
+                    date_of_birth: "15/02/2003"
+                    img:
+                    created_at: "23/1/2024"
+                  - id: 2
+                    title: "Book 2"
+                    author: "Author 2"
+                    published_year: 2021
+                  - id: 3
+                    title: "Book 3"
+                    author: "Author 3"
+                    published_year: 2022
+    post:
+      tags:
+        - Accounts
+      summary: Thêm tài khoản mới
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Accounts'
+            examples:
+              sampleRequest:
+                value:
+                  email: "thanhtoan@gmail.com"
+                  password: "123456"
+                  username: "Thanh Toan"
+      responses:
+        '200':
+          description: Tài khoản mới đã được thêm thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accounts'
+              example:
+                id: 1
+                email: "thanhtoan@gmail.com"
+                password: "123456"
+                username: "Thanh Toan"
+        '400':
+          description: Yêu cầu không hợp lệ, kiểm tra lại dữ liệu nhập vào
