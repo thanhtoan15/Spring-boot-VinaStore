@@ -14,7 +14,7 @@ public interface AccountsRepositories extends JpaRepository<Accounts, Integer> {
     Accounts getAccountsByEmailAndPassword(String email,String password);
 
     @Query("SELECT o FROM Accounts o WHERE o.email = :email and o.deleted_at IS NULL")
-    Accounts findByEmail(String email);
+    Optional<Accounts> findByEmail(String email);
 
     @Query("select o from Accounts o where o.id = :id and o.password = :password AND o.deleted_at IS NULL")
     Accounts findAccountByIdAndPassword(Integer id, String password);
