@@ -1,5 +1,6 @@
 package com.vinastore.auth;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ public class AuthenticationContronller {
 
     @PostMapping("/registerr")
     public ResponseEntity<AuthenticationResponse> register(
+            @Valid
             @RequestBody RegisterRequest request
     ){
         System.out.println(request);

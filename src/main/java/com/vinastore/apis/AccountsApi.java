@@ -6,6 +6,7 @@ import com.vinastore.service.EmailService;
 import com.vinastore.utils.CookieUtils;
 import com.vinastore.utils.PasswordUtils;
 import com.vinastore.utils.SessionUtils;
+import jakarta.validation.Valid;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import com.vinastore.entities.Accounts;
 import com.vinastore.service.AccountsService;
@@ -80,7 +81,7 @@ public class AccountsApi {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> postRegister(@RequestParam("email") String email,
+    public ResponseEntity<?> postRegister(@Valid @RequestParam("email") String email,
                                  @RequestParam("username") String username,
                                  @RequestParam("password") String password){
         Accounts accountsCheck = accountsService.register(email, username, password);
