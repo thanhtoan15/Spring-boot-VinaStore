@@ -2,6 +2,7 @@ package com.vinastore.apis;
 
 import com.vinastore.entities.Discounts;
 import com.vinastore.service.DiscountsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class DiscountsApi {
     }
 
     @PostMapping()
-    public ResponseEntity<?> createDiscount(@RequestBody Discounts entity){
+    public ResponseEntity<?> createDiscount(@Valid @RequestBody Discounts entity){
         ResponseEntity discount = discountsService.createDiscounts(entity);
         return ResponseEntity.status(200).body(discount);
     }

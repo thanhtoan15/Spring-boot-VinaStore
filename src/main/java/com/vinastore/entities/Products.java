@@ -3,6 +3,7 @@ package com.vinastore.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,14 +24,17 @@ public class Products implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull(message = "Name product is required")
     private String name_product;
 
     private String description;
 
+    @NotNull(message = "Price product is required")
     private Integer price;
 
     private String img;
 
+    @NotNull(message = "Quantity product is required")
     private Integer quantity;
 
     @Temporal(TemporalType.DATE)

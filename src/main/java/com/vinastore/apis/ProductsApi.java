@@ -3,6 +3,7 @@ package com.vinastore.apis;
 import com.vinastore.entities.Products;
 import com.vinastore.service.ProductsService;
 import com.vinastore.utils.ResponseBodyServer;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Page;
@@ -72,7 +73,7 @@ public class ProductsApi {
     }
 
     @PostMapping()
-    public ResponseEntity<?> createProduct(@RequestBody Products productform)
+    public ResponseEntity<?> createProduct(@Valid @RequestBody Products productform)
     {
         ResponseEntity<?> products = productsService.saveProduct(productform);
         return ResponseEntity.status(200).body(products);
