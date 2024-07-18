@@ -1,9 +1,11 @@
 package com.vinastore.apis;
 
 import com.vinastore.entities.Products;
+import com.vinastore.exception.GlobalExceptionHandler;
 import com.vinastore.service.ProductsService;
 import com.vinastore.utils.ResponseBodyServer;
 import jakarta.validation.Valid;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Page;
@@ -17,12 +19,15 @@ import java.util.List;
 @RequestMapping("public/api/v1/products")
 public class ProductsApi {
 
+    private static final Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
+
     @Autowired
     private ProductsService productsService;
 
     @GetMapping
     public ResponseEntity<?> getAllProduct(){
         ResponseEntity<?> result = productsService.getAllProduct();
+        logger.info("Log4j Success");
         return ResponseEntity.status(200).body(result);
     }
 
